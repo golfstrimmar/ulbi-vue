@@ -8,21 +8,24 @@ v-container
       v-for="(photo , index) in photos" 
       :key="index"
       :photo="photo"
+      @click ="openDialog"
       )
+    PhotoDialog(
+      :photo="currentPhoto"
+      v-model='dialogVisible'
+    )
 </template>
 <script>
 import Photo from '@/components/photo/Photo';
 import PhotoForm from '@/components/photo/PhotoForm';
+import PhotoDialog from '@/components/photo/PhotoDialog';
   export default {
     data: () => ({ 
-         photos:[
-          {id:"1", title:"photo1"},
-         {id:"2", title:"photo2"},
-         {id:"3", title:"photo3"},
-         {id:"4", title:"photo4"}
-       ]
+         photos:[],
+         currentPhoto: {},
+         dialogVisible: false
      }),
-     components: { Photo,PhotoForm   }, 
+     components: { Photo,PhotoForm ,PhotoDialog  }, 
       mounted() {
          this.fetchToDo()
          }, 
@@ -36,8 +39,11 @@ import PhotoForm from '@/components/photo/PhotoForm';
           addPhoto(photo){
             // в массив фото добавляется еще один объект  который пришёл из дочернего компонента
                     this.photos.push(photo)
-          }
-
+          },
+          openDialog(){
+            this.currentPhoto= photo
+            this.dialogVisible=true
+          },
            }, 
 
 

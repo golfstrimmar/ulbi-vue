@@ -15,7 +15,7 @@ v-container
 export default {
   data: () => ({
     title: "",
-    img: "",
+    img: null,
   }),
   methods: {
     addPhoto() {

@@ -1,6 +1,8 @@
 <template lang="pug">
 v-col(cols="4")
-  v-card
+  v-card(
+    @click="openDialog"
+    )
     v-card-title  {{photo.title}}
     v-card-text
       v-img(
@@ -22,7 +24,12 @@ v-col(cols="4")
      data: () => ({ }), 
       components: {    }, 
        mounted() {     }, 
-        methods: {      }, 
+        methods: { 
+        // вешаем слушатель события клика и эмитим метод в родительский компонент
+          openDialog(){
+            this.$emit('openDialog',this.photo)
+          }
+             }, 
          computed:{      }
   }
 </script>
