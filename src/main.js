@@ -14,7 +14,7 @@ import "./assets/null.scss"
 import store from "@/store/store";
 
 
-
+// привязка axios к прототипу vue для того чтобы он был доступен в каждом компоненте через this. 
 Vue.prototype.axios = axios;
 
 Vue.config.productionTip = false

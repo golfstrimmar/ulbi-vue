@@ -1,13 +1,18 @@
 <template lang="pug">
 v-container
-  Photo(
-    v-for="(photo , index) in photos" 
-    :key="index"
-    :photo="photo"
+  PhotoForm(
+    @addPhoto = "addPhoto"
     )
+  v-row
+    Photo(
+      v-for="(photo , index) in photos" 
+      :key="index"
+      :photo="photo"
+      )
 </template>
 <script>
 import Photo from '@/components/photo/Photo';
+import PhotoForm from '@/components/photo/PhotoForm';
   export default {
     data: () => ({ 
          photos:[
@@ -17,8 +22,26 @@ import Photo from '@/components/photo/Photo';
          {id:"4", title:"photo4"}
        ]
      }),
-     components: { Photo   }, 
-      mounted() {     },  methods: {      },  computed:{      }
+     components: { Photo,PhotoForm   }, 
+      mounted() {
+         this.fetchToDo()
+         }, 
+      methods: { 
+        fetchToDo(){
+          this.axios.get('https://jsonplaceholder.typicode.com/photos?_limit=10').then(response => this.photos = response.data)
+          },
+
+          //  реализуя функцию добавления картинки из дочернего компонента
+          // она оттуда $emit 
+          addPhoto(photo){
+            // в массив фото добавляется еще один объект  который пришёл из дочернего компонента
+                    this.photos.push(photo)
+          }
+
+           }, 
+
+
+           computed:{      }
 
   }
 </script>

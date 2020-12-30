@@ -1,8 +1,13 @@
 <template lang="pug">
-v-container
-
-  p {{photo.id +" "+ photo.title}}
-
+v-col(cols="4")
+  v-card
+    v-card-title  {{photo.title}}
+    v-card-text
+      v-img(
+        width="200"
+        height="200"
+        :src="photo.url"
+        )
 </template>
 
 <script>
