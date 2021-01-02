@@ -11,7 +11,7 @@ v-container
     v-btn(@click="addPhoto()") Добавить
 </template>
 
-<script>
+ <script>
 export default {
   data: () => ({
     title: "",
@@ -19,7 +19,6 @@ export default {
   }),
   methods: {
     addPhoto() {
-      // --------------------------------------------------------------------------------
       // объект Java Script
       const reader = new FileReader();
 
